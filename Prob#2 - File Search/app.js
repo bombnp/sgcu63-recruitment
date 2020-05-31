@@ -8,7 +8,7 @@ function search(fileToSearch, dirObj, depth, dirName) {
 			if (value.includes(fileToSearch)) {
 				directories.push({
 					depth: depth,
-					directory: dirName
+					directory: dirName + fileToSearch
 				})
 			}
 		} else {
@@ -35,4 +35,5 @@ function fileSearch(fileToSearch, filesObj) {
 	return directories
 }
 
-fileSearch("file1", "./dataset.json")
+results = fileSearch("file1", "./dataset.json")
+console.log(results)
