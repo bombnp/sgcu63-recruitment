@@ -3,10 +3,9 @@ import urllib
 import json
 from json2html import *
 
-data = json.load(open("Prob#1 - The Scraper\data.json"))
-baans = data["baans"]
+baans = json.load(open("Prob#1 - The Scraper\data.json"))["baans"]
 
-tableData = {}
+tableData = []
 
 for baan in baans:
 	url = "https://rubnongkaomai.com/baan/" + baan
@@ -20,8 +19,19 @@ for baan in baans:
 			baanSlogan += "\n"
 		else:
 			baanSlogan += str(content)
+	# additional idea: added description
+	baanDescription = ""
+	for content in soup.find("h3").next_sibling.next_sibling.contents:
+		if str(content) == "<br/>":
+			baanDescription += "\n"
+		else:
+			baanDescription += str(content)
 
-	tableData[baanName] = baanSlogan
+	tableData.append({
+		"name": baanName,
+		"slogan": baanSlogan,
+		"description": baanDescription
+	})
 	print(baan)
 
 
