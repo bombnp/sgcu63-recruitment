@@ -26,5 +26,5 @@ for baan in baans:
 
 
 with open(r"Prob#1 - The Scraper\table.html", "w+", encoding="utf8") as htmlFile:
-	htmlFile.write(json2html.convert(json=tableData))
+	htmlFile.write(json2html.convert(json=tableData).replace("\n", "<br/>"))
 	
